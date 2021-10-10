@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Sprites/aquarium.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1, 24.9345 )
+
+[node name="FishTank" type="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="LeftWall" type="CollisionShape2D" parent="."]
+position = Vector2( -25, 0 )
+shape = SubResource( 1 )
+
+[node name="RightWall" type="CollisionShape2D" parent="."]
+position = Vector2( 25, 0 )
+shape = SubResource( 1 )
+
+[node name="TopWall" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 25 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="BottomWall" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -25 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
