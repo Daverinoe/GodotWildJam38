@@ -46,7 +46,7 @@ radius = 5.13043
 height = 8.43071
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 35.0
+radius = 100.0
 
 [node name="Fish" type="KinematicBody2D" groups=[
 "boid",
@@ -56,7 +56,7 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource( 2 )
 speed = 1.0
-maxSpeed = 1.0
+maxSpeed = 3.0
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 2 )
@@ -71,23 +71,23 @@ rotation = 1.5708
 shape = SubResource( 3 )
 
 [node name="Adolescence" type="Timer" parent="."]
+wait_time = 60.0
 one_shot = true
 autostart = true
 
 [node name="Adulthood" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 60.0
 one_shot = true
-autostart = true
 
 [node name="FlockDetector" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlockDetector"]
 position = Vector2( -0.276581, 0.196862 )
 shape = SubResource( 4 )
 
-[node name="RayCasts" type="Node2D" parent="."]
-
-[node name="CenterCheck" type="RayCast2D" parent="RayCasts"]
+[node name="CenterCheck" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 50, 0 )
 

@@ -5,7 +5,7 @@ var value
 #func _init():
 #	get_node("SellDialogue/MarginContainer/Background/Sell").text = str(value)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	self.global_rotation = 0.0
 
 

@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
 # Play with to affect flocking behaviour
-var SEPARATION_WEIGHT = 0.0
-var ALIGNMENT_WEIGHT = 0.8
-var COHESION_WEIGHT = 0.6
-const MAX_AVOID_FORCE = 1.0
+var SEPARATION_WEIGHT = 0.5
+var ALIGNMENT_WEIGHT = 0.5
+var COHESION_WEIGHT = 0.5
+const MAX_AVOID_FORCE = 5.0
 
 # How much the fish sells for
 export(float, 0.0, 20.0, 0.1) var maxValue = 50.0
@@ -19,12 +19,13 @@ var currentModifier = SMALL_FISH_MODIFIER
 export(float, 0.0, 5.0, 0.1) var speed = 2.0
 var direction = Vector2();
 var velocity = Vector2();
+var isColliding = false
+var avoidDirection = 0
 
 # Flocking behaviour https://gamedevelopment.tutsplus.com/series/understanding-steering-behaviors--gamedev-12732
 var localFlockmates = []
-var walls = []
-export(float, 0.0, 5.0, 0.1) var maxSpeed = 2.0
-export(int, 0, 100, 1) var separationDistance = 30
+export(float, 0.0, 5.0, 0.1) var maxSpeed = 5.0
+export(int, 0, 100, 1) var separationDistance = 20
 
 # Sell dialogue
 var sellDialogue = preload("res://Scenes/SellDialogue.tscn")
@@ -46,14 +47,6 @@ func _ready():
 	else:
 		$Sprite.frame = 9
 	
-	# Set raycasts for obstacle avoidance
-	var theta = PI/2
-	var parity = 1
-#	for raycast in $RayCasts.get_children():
-#		raycast.cast_to = Vector2(50*sin(theta) * parity, 50*cos(theta))
-#		if parity == 1:
-#			theta = theta + PI/8
-#		parity *= -1
 
 func _physics_process(delta):
 	# Rotate fish to look in movement direction
@@ -63,10 +56,9 @@ func _physics_process(delta):
 	else:
 		$Sprite.flip_v = false
 	
-	velocity = (direction * speed).clamped(maxSpeed * 1 / currentModifier)
-	move_and_collide(velocity)
-	direction = checkForCollisions() # For flocking behaviour
-	direction = flocking()
+	var collision = move_and_collide(direction * speed)
+	direction = flocking() # For flocking behaviour
+	direction = checkForCollisions(collision, delta)
 
 func flocking():
 	var separation = Vector2()
@@ -95,9 +87,9 @@ func flocking():
 		
 	return(
 		(direction
-		+ separation * clamp(SEPARATION_WEIGHT + currentModifier, 0, 1.0)
-		+ heading * clamp(ALIGNMENT_WEIGHT - currentModifier, 0, 1.0)
-		+ cohesion * clamp(COHESION_WEIGHT - currentModifier, 0, 1.0)
+		+ separation * SEPARATION_WEIGHT
+		+ heading * ALIGNMENT_WEIGHT
+		+ cohesion * COHESION_WEIGHT
 		).normalized())
 
 
@@ -113,24 +105,29 @@ func _on_FlockDetector_body_exited(body):
 	if body.is_in_group("boid"):
 		localFlockmates.erase(body)
 
-func checkForCollisions():
-	var projection = Vector2()
+func checkForCollisions(collision, delta):
 	
-	# Raycast global variables
-	var raycastGlobalOrigin = Vector2()
-	var raycastGlobalEndpoint = Vector2()
-	var raycastGlobalCastTo = Vector2()
-	
-#	projection = direction.dot(collision.normal) / direction.length() * direction
-#	return (collision.normal - projection).normalized() * MAX_AVOID_FORCE
-	
-	for raycast in $RayCasts.get_children():
-		if !raycast.is_colliding():
-			raycastGlobalOrigin = raycast.to_global(position)
-			raycastGlobalEndpoint = raycast.to_global(raycast.cast_to)
-			raycastGlobalCastTo = raycastGlobalEndpoint - raycastGlobalOrigin
-			print([raycastGlobalOrigin, raycastGlobalEndpoint, raycastGlobalCastTo.normalized()])
-			return (raycast.to_local(raycastGlobalCastTo)).normalized()
+	var orthoVec = Vector2()
+
+	if $CenterCheck.is_colliding():
+		if !isColliding:
+			avoidDirection = randi() % 2
+			isColliding = true
+		if avoidDirection:
+			orthoVec = Vector2(-direction.y, direction.x)
+		else:
+			orthoVec = Vector2(direction.y, -direction.x)
+
+		return direction + orthoVec * MAX_AVOID_FORCE * 10 * delta
+
+	if isColliding:
+		isColliding = false
+
+	if collision:
+		if collision.collider is StaticBody2D:
+			return -direction
+		else:
+			direction += Vector2(randf() * 2.0 - 1.0, randf() * 2.0 - 1.0) * 0.1
 	
 	return direction
 
@@ -138,14 +135,17 @@ func checkForCollisions():
 func _on_Adolescence_timeout():
 	$Sprite.frame += 1
 	currentModifier = MEDIUM_FISH_MODIFIER
+	$FlockDetector/CollisionShape2D.radius *= 0.5
+	$Adulthood.start()
 
 
 func _on_Adulthood_timeout():
 	$Sprite.frame += 1
 	currentModifier = LARGE_FISH_MODIFIER
+	$FlockDetector/CollisionShape2D.radius *= 0.5
 
 
-func _on_Fish_input_event(viewport, event, shape_idx):
+func _on_Fish_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		var sellInstance = sellDialogue.instance()
 		self.call_deferred("add_child", sellInstance)

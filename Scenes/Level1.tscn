@@ -12,11 +12,17 @@ __meta__ = {
 
 [node name="Fish" type="Node2D" parent="."]
 position = Vector2( 643.658, 591.444 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Fish1" parent="Fish" instance=ExtResource( 2 )]
+position = Vector2( 1.00012, 1.5556 )
+
+[node name="Fish2" parent="Fish" instance=ExtResource( 2 )]
+position = Vector2( 1.00012, 1.5556 )
+
+[node name="Fish3" parent="Fish" instance=ExtResource( 2 )]
+position = Vector2( 1.00012, 1.5556 )
+
+[node name="Fish4" parent="Fish" instance=ExtResource( 2 )]
 position = Vector2( 1.00012, 1.5556 )
 
 [node name="FishTank" parent="." instance=ExtResource( 1 )]
