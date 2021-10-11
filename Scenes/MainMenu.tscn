@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Fonts/ButtonTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Fonts/GameTheme.tres" type="Theme" id=2]
-[ext_resource path="res://Assets/Sounds/Music/anttisinstrumentals_goldenmachine.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Sounds/Music/main menu/anttisinstrumentals_goldenmachine.mp3" type="AudioStream" id=3]
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/fishtank.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Fonts/GameFont.tres" type="DynamicFont" id=6]
@@ -23,10 +23,12 @@ __meta__ = {
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -249.0
-margin_top = 59.0
-margin_right = 249.0
-margin_bottom = 362.0
+margin_left = -215.0
+margin_right = 215.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 400, 400 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource( 2 )
 custom_fonts/normal_font = ExtResource( 6 )
 bbcode_enabled = true
@@ -48,9 +50,8 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -146.0
-margin_top = -372.0
+margin_top = -364.0
 margin_right = 146.0
-margin_bottom = -8.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -94,4 +95,5 @@ position = Vector2( 640, 360 )
 scale = Vector2( 30, 17 )
 
 [connection signal="pressed" from="Control/VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]

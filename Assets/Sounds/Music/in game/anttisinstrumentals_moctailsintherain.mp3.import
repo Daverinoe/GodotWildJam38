@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/anttisinstrumentals_moctailsintherain.mp3-2fe1172d2a03661bc08b07b2a0e7591d.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Music/in game/anttisinstrumentals_moctailsintherain.mp3"
+dest_files=[ "res://.import/anttisinstrumentals_moctailsintherain.mp3-2fe1172d2a03661bc08b07b2a0e7591d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

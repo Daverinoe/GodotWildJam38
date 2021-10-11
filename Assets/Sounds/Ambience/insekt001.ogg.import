@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/insekt001.ogg-a29e46a0f1828f8f60c309391842cec0.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Ambience/insekt001.ogg"
+dest_files=[ "res://.import/insekt001.ogg-a29e46a0f1828f8f60c309391842cec0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
