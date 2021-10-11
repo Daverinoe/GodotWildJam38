@@ -24,19 +24,19 @@ func _ready() -> void:
 
 
 func _on_Master_value_changed(value):
-	AudioServer.set_bus_volume_db(masterLevel, linear2db(value))
+	AudioServer.set_bus_volume_db(masterBus, linear2db(value))
 
 
 func _on_Ambience_value_changed(value):
-	AudioServer.set_bus_volume_db(ambienceLevel, linear2db(value))
+	AudioServer.set_bus_volume_db(ambienceBus, linear2db(value))
 
 
 func _on_Effects_value_changed(value):
-	AudioServer.set_bus_volume_db(effectLevel, linear2db(value))
+	AudioServer.set_bus_volume_db(effectBus, linear2db(value))
 
 
 func _on_Music_value_changed(value):
-	AudioServer.set_bus_volume_db(musicLevel, linear2db(value))
+	AudioServer.set_bus_volume_db(musicBus, linear2db(value))
 
 
 func _on_Button_pressed():

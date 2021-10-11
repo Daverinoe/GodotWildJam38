@@ -6,7 +6,7 @@ var sellDialogue = preload("res://Scenes/selldialogue.tscn")
 
 
 func _ready():
-	material.set_shader_param("offset", randf())
+	material.set_shader_param("offset", randf() * 2.0 - 1.0)
 	
 	var randPlant = randi() % 2
 	if randPlant:

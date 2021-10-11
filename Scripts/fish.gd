@@ -3,11 +3,11 @@ extends KinematicBody2D
 # Play with to affect flocking behaviour
 var SEPARATION_WEIGHT = 0.1
 var ALIGNMENT_WEIGHT = 0.8
-var COHESION_WEIGHT = 0.6
+var COHESION_WEIGHT = 0.8
 const MAX_AVOID_FORCE = 5.0
 
 # How much the fish sells for
-export(float, 0.0, 20.0, 0.1) var value = 50.0
+export(float, 0.0, 20.0, 0.1) var value = 10.0
 
 # Fish growth details (Could replace with a curve)
 export var SMALL_FISH_MODIFIER = 0.2
@@ -140,7 +140,7 @@ func _on_Adolescence_timeout():
 	$Sprite.frame += 1
 	value = 30
 	SEPARATION_WEIGHT = 0.6
-	ALIGNMENT_WEIGHT = 0.3
+	ALIGNMENT_WEIGHT = 0.2
 	COHESION_WEIGHT = 0.1
 	
 	$Adulthood.start()

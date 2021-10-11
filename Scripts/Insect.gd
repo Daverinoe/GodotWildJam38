@@ -19,7 +19,7 @@ func _physics_process(delta):
 	if fly:
 		collision = move_and_collide(velocity)
 	if collision:
-		direction = collision.normal
+		direction = collision.normal + Vector2(randf()*2.0 - 1.0, randf()*2.0 - 1.0)
 
 func _on_DirectionChange_timeout():
 	direction = Vector2(randf()*2.0 - 1.0, randf()*2.0 - 1.0)
