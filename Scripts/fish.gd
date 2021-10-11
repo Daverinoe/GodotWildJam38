@@ -1,13 +1,13 @@
 extends KinematicBody2D
 
 # Play with to affect flocking behaviour
-var SEPARATION_WEIGHT = 0.2
-var ALIGNMENT_WEIGHT = 0.5
-var COHESION_WEIGHT = 0.5
+var SEPARATION_WEIGHT = 0.1
+var ALIGNMENT_WEIGHT = 0.8
+var COHESION_WEIGHT = 0.6
 const MAX_AVOID_FORCE = 5.0
 
 # How much the fish sells for
-export(float, 0.0, 20.0, 0.1) var maxValue = 50.0
+export(float, 0.0, 20.0, 0.1) var value = 50.0
 
 # Fish growth details (Could replace with a curve)
 export var SMALL_FISH_MODIFIER = 0.2
@@ -25,10 +25,10 @@ var avoidDirection = 0
 # Flocking behaviour https://gamedevelopment.tutsplus.com/series/understanding-steering-behaviors--gamedev-12732
 var localFlockmates = []
 export(float, 0.0, 5.0, 0.1) var maxSpeed = 5.0
-export(int, 0, 100, 1) var separationDistance = 50
+export(int, 0, 100, 1) var separationDistance = 40
 
 # Sell dialogue
-var sellDialogue = preload("res://Scenes/SellDialogue.tscn")
+var sellDialogue = preload("res://Scenes/selldialogue.tscn")
 
 func _ready():
 	randomize()
@@ -50,7 +50,9 @@ func _ready():
 
 func _physics_process(delta):
 	# Rotate fish to look in movement direction
-	rotation = Vector2(1, 0).angle_to(direction)
+	if abs(rotation - Vector2(1, 0).angle_to(direction)) > 0.2: # Add a rotation buffer to help avoid "jittering"
+		rotation = Vector2(1, 0).angle_to(direction)
+	
 	if rotation > PI/2 || rotation < -PI/2:
 		$Sprite.flip_v = true
 	else:
@@ -82,14 +84,14 @@ func flocking():
 		heading /= numFlockmates
 		cohesion /= numFlockmates
 		var centerDirection = self.position.direction_to(cohesion)
-		var centerSpeed = maxSpeed * self.position.distance_to(cohesion) / $FlockDetector/CollisionShape2D.shape.radius
+		var centerSpeed = self.position.distance_to(cohesion) / $FlockDetector/CollisionShape2D.shape.radius
 		cohesion = centerDirection * centerSpeed
 	
 	return(
 		(direction
-		+ separation * clamp(SEPARATION_WEIGHT + currentModifier, 0.0, 1.0)
-		+ heading * clamp(ALIGNMENT_WEIGHT - currentModifier/2, 0.0, 1.0)
-		+ cohesion * clamp(COHESION_WEIGHT - currentModifier, 0.0, 1.0)
+		+ separation * SEPARATION_WEIGHT
+		+ heading * ALIGNMENT_WEIGHT
+		+ cohesion * COHESION_WEIGHT
 		).normalized())
 
 
@@ -124,29 +126,38 @@ func checkForCollisions(collision, delta):
 		isColliding = false
 
 	if collision:
-		return collision.normal
-#		if collision.collider is StaticBody2D:
-#			return collision.normal
-#		else:
-#			direction += Vector2(randf() * 2.0 - 1.0, randf() * 2.0 - 1.0) * 0.1
+		if collision.collider is StaticBody2D:
+			return collision.normal
+		elif collision.collider is Area2D:
+			pass
+		else:
+			return direction
 	
 	return direction
 
 
 func _on_Adolescence_timeout():
 	$Sprite.frame += 1
-	currentModifier = MEDIUM_FISH_MODIFIER
+	value = 30
+	SEPARATION_WEIGHT = 0.6
+	ALIGNMENT_WEIGHT = 0.3
+	COHESION_WEIGHT = 0.1
+	
 	$Adulthood.start()
 
 
 func _on_Adulthood_timeout():
 	$Sprite.frame += 1
-	currentModifier = LARGE_FISH_MODIFIER
+	value = 50
+	SEPARATION_WEIGHT = 1.0
+	ALIGNMENT_WEIGHT = 0.0
+	COHESION_WEIGHT = 0.0
+	
 
 
 func _on_Fish_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		var sellInstance = sellDialogue.instance()
 		self.call_deferred("add_child", sellInstance)
-		sellInstance.get_node("SellDialogue/MarginContainer/Background/Sell").text = str(round(maxValue * currentModifier))
-		sellInstance.value = maxValue * currentModifier
+		sellInstance.get_node("SellDialogue/MarginContainer/Background/Sell").text = str(round(value))
+		sellInstance.value = value

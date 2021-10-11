@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="GWJ38"
-run/main_scene="res://Scenes/MainMenu.tscn"
+run/main_scene="res://Scenes/mainmenu.tscn"
 config/icon="res://Assets/Sprites/icon.png"
 
 [display]

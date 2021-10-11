@@ -1,7 +1,7 @@
 extends Node2D
 
-var game = "res://Scenes/Game.tscn"
-var fishScene = preload("res://Scenes/Fish.tscn")
+var game = "res://Scenes/game.tscn"
+var fishScene = preload("res://Scenes/fish.tscn")
 
 export var numFish = 50
 
