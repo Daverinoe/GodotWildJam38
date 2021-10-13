@@ -14,6 +14,8 @@ export var SMALL_FISH_MODIFIER = 0.2
 export var MEDIUM_FISH_MODIFIER = 0.6
 export var LARGE_FISH_MODIFIER = 1.0
 var currentModifier = SMALL_FISH_MODIFIER
+var nutrientsGenerated = 0.5
+var insectsEaten = 1
 
 # Describes the velocity of the fish
 export(float, 0.0, 5.0, 0.1) var speed = 2.0
@@ -47,6 +49,10 @@ func _ready():
 	else:
 		$Sprite.frame = 9
 	
+
+func _process(_delta):
+	if get_tree().root.get_node_or_null("Game"):
+		get_tree().root.get_node("Game").nutrientsChange += nutrientsGenerated
 
 func _physics_process(delta):
 	# Rotate fish to look in movement direction
@@ -143,6 +149,9 @@ func _on_Adolescence_timeout():
 	ALIGNMENT_WEIGHT = 0.2
 	COHESION_WEIGHT = 0.1
 	
+	nutrientsGenerated *= 2
+	insectsEaten *= 2
+	
 	$Adulthood.start()
 
 
@@ -153,6 +162,8 @@ func _on_Adulthood_timeout():
 	ALIGNMENT_WEIGHT = 0.0
 	COHESION_WEIGHT = 0.0
 	
+	nutrientsGenerated *= 2
+	insectsEaten *= 2
 
 
 func _on_Fish_input_event(_viewport, event, _shape_idx):

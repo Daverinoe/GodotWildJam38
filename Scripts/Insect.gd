@@ -13,7 +13,7 @@ func _ready():
 	$WaitTime.wait_time = randf()
 	speed = randf() * 5 + 2
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity = direction.normalized() * speed
 	var collision
 	if fly:
@@ -24,7 +24,7 @@ func _physics_process(delta):
 func _on_DirectionChange_timeout():
 	direction = Vector2(randf()*2.0 - 1.0, randf()*2.0 - 1.0)
 	$DirectionChange.wait_time = randf() * 5
-	var speed = randf() * 2
+	speed = randf() * 5 + 2
 	$DirectionChange.start()
 
 

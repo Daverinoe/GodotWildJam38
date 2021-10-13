@@ -4,13 +4,13 @@
 [ext_resource path="res://Scenes/fishtank.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/fish.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/insect.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/plant.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Sounds/Ambience/traffic.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Scripts/Audio.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Sounds/Ambience/water/stream6.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Assets/Sounds/Ambience/insekt001.ogg" type="AudioStream" id=10]
 [ext_resource path="res://Assets/Sprites/background.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/Gauge.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -41,72 +41,54 @@ margin_right = 1280.0
 margin_bottom = 90.0
 
 [node name="Fish" type="Node2D" parent="."]
-position = Vector2( 643.658, 591.444 )
+position = Vector2( 0, 320 )
 
 [node name="Fish" parent="Fish" instance=ExtResource( 4 )]
+position = Vector2( 711.398, 294.314 )
 
 [node name="Fish2" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 150.41, -51.6332 )
+position = Vector2( 861.808, 242.681 )
 
 [node name="Fish3" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 240.207, 8.97974 )
+position = Vector2( 951.605, 303.293 )
 
 [node name="Fish4" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 401.841, -123.471 )
+position = Vector2( 1113.24, 170.843 )
 
 [node name="Fish5" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( -15.7145, -144.798 )
+position = Vector2( 695.684, 149.516 )
 
 [node name="Fish6" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( -232.35, -19.0818 )
+position = Vector2( 479.048, 275.232 )
 
 [node name="Fish7" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( -280.615, -120.103 )
+position = Vector2( 430.783, 174.211 )
 
 [node name="Fish8" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( -397.351, 19.082 )
+position = Vector2( 314.047, 313.396 )
 
 [node name="Fish9" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( -503.985, -125.716 )
+position = Vector2( 207.413, 168.598 )
 
 [node name="Fish10" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( -345.718, -112.246 )
+position = Vector2( 365.68, 182.068 )
 
 [node name="Fish11" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( -527.557, 13.4697 )
+position = Vector2( 479.048, 275.232 )
+
+[node name="Fish12" parent="Fish" instance=ExtResource( 4 )]
+position = Vector2( 430.783, 174.211 )
+
+[node name="Fish13" parent="Fish" instance=ExtResource( 4 )]
+position = Vector2( 314.047, 313.396 )
+
+[node name="Fish14" parent="Fish" instance=ExtResource( 4 )]
+position = Vector2( 207.413, 168.598 )
+
+[node name="Fish15" parent="Fish" instance=ExtResource( 4 )]
+position = Vector2( 365.68, 182.068 )
 
 [node name="Insects" type="Node2D" parent="."]
-position = Vector2( 643.658, 591.444 )
-
-[node name="Insect" parent="Insects" instance=ExtResource( 5 )]
-position = Vector2( -140.327, -440.007 )
-
-[node name="Insect2" parent="Insects" instance=ExtResource( 5 )]
-position = Vector2( -140.327, -440.007 )
-
-[node name="Insect3" parent="Insects" instance=ExtResource( 5 )]
-position = Vector2( -140.327, -440.007 )
-
-[node name="Insect4" parent="Insects" instance=ExtResource( 5 )]
-position = Vector2( -140.327, -440.007 )
-
-[node name="Insect5" parent="Insects" instance=ExtResource( 5 )]
-position = Vector2( -140.327, -440.007 )
-
-[node name="Insect6" parent="Insects" instance=ExtResource( 5 )]
-position = Vector2( -140.327, -440.007 )
-
-[node name="Insect7" parent="Insects" instance=ExtResource( 5 )]
-position = Vector2( -140.327, -440.007 )
-
-[node name="Insect8" parent="Insects" instance=ExtResource( 5 )]
-position = Vector2( -140.327, -440.007 )
-
-[node name="Insect9" parent="Insects" instance=ExtResource( 5 )]
-position = Vector2( -140.327, -440.007 )
-
-[node name="Insect10" parent="Insects" instance=ExtResource( 5 )]
-position = Vector2( -140.327, -440.007 )
 
 [node name="Plants" type="Node2D" parent="."]
 
@@ -136,24 +118,6 @@ position = Vector2( 480.414, 306.432 )
 
 [node name="Plant9" parent="Plants" instance=ExtResource( 6 )]
 position = Vector2( 735.212, 310.922 )
-
-[node name="Plant10" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 987.766, 306.432 )
-
-[node name="Plant11" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 904.704, 310.922 )
-
-[node name="Plant12" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 817.152, 309.799 )
-
-[node name="Plant13" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 1070.83, 309.799 )
-
-[node name="Plant15" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 1240.32, 309.799 )
-
-[node name="Plant16" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 1152.77, 308.677 )
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
@@ -205,5 +169,15 @@ bus = "Music"
 
 [node name="SongWaitTimer" type="Timer" parent="Audio/Music"]
 
+[node name="Gauges" type="Node2D" parent="."]
+
+[node name="Gauge" parent="Gauges" instance=ExtResource( 12 )]
+position = Vector2( 61.4306, 406.041 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="finished" from="Audio/Music" to="Audio" method="_on_Music_finished"]
 [connection signal="timeout" from="Audio/Music/SongWaitTimer" to="Audio" method="_on_SongWaitTimer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
