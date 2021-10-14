@@ -14,7 +14,7 @@ export var SMALL_FISH_MODIFIER = 0.2
 export var MEDIUM_FISH_MODIFIER = 0.6
 export var LARGE_FISH_MODIFIER = 1.0
 var currentModifier = SMALL_FISH_MODIFIER
-var nutrientsGenerated = 0.5
+var nutrientsGenerated = 1.5
 var insectsEaten = 1
 
 # Describes the velocity of the fish
@@ -48,7 +48,6 @@ func _ready():
 		$Sprite.frame = 6
 	else:
 		$Sprite.frame = 9
-	
 
 func _process(_delta):
 	if get_tree().root.get_node_or_null("Game"):

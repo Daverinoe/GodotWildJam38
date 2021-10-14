@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Fonts/ButtonTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Fonts/GameTheme.tres" type="Theme" id=2]
@@ -6,6 +6,19 @@
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/fishtank.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Fonts/GameFont.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Assets/Sprites/bubble.png" type="Texture" id=7]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 700, 400, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 6.25
+linear_accel_random = 1.0
+scale = 0.2
+scale_random = 0.2
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 4 )
@@ -93,6 +106,17 @@ __meta__ = {
 [node name="FishTank" parent="clickblocker" instance=ExtResource( 5 )]
 position = Vector2( 640, 360 )
 scale = Vector2( 30, 17 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 644.041, 358.313 )
+amount = 12
+lifetime = 5.0
+explosiveness = 0.06
+randomness = 1.0
+visibility_rect = Rect2( -0.66949, -123.694, 1.41216, 124.451 )
+local_coords = false
+process_material = SubResource( 1 )
+texture = ExtResource( 7 )
 
 [connection signal="pressed" from="Control/VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Options" to="." method="_on_Options_pressed"]

@@ -173,6 +173,7 @@ bus = "Music"
 
 [node name="Gauge" parent="Gauges" instance=ExtResource( 12 )]
 position = Vector2( 61.4306, 406.041 )
+scale = Vector2( 2, 2 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

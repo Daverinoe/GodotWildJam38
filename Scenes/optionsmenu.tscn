@@ -81,14 +81,14 @@ theme = SubResource( 1 )
 text = "Master"
 
 [node name="Ambience" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/Audio"]
-margin_left = 274.0
-margin_right = 374.0
+margin_left = 244.0
+margin_right = 404.0
 margin_bottom = 247.0
 size_flags_horizontal = 6
 
 [node name="Ambience" type="VSlider" parent="Background/MarginContainer/VBoxContainer/Audio/Ambience"]
-margin_left = 42.0
-margin_right = 58.0
+margin_left = 72.0
+margin_right = 88.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 size_flags_horizontal = 4
@@ -98,10 +98,10 @@ tick_count = 20
 
 [node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/Audio/Ambience"]
 margin_top = 204.0
-margin_right = 100.0
+margin_right = 160.0
 margin_bottom = 224.0
 theme = ExtResource( 2 )
-text = "Music"
+text = "Ambience"
 
 [node name="Effects" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/Audio"]
 margin_left = 471.0
@@ -128,14 +128,14 @@ text = "Sound
 Effects"
 
 [node name="Music" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/Audio"]
-margin_left = 679.0
-margin_right = 839.0
+margin_left = 709.0
+margin_right = 809.0
 margin_bottom = 247.0
 size_flags_horizontal = 6
 
 [node name="Music" type="VSlider" parent="Background/MarginContainer/VBoxContainer/Audio/Music"]
-margin_left = 72.0
-margin_right = 88.0
+margin_left = 42.0
+margin_right = 58.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 size_flags_horizontal = 4
@@ -145,11 +145,10 @@ tick_count = 20
 
 [node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/Audio/Music"]
 margin_top = 204.0
-margin_right = 160.0
-margin_bottom = 247.0
+margin_right = 100.0
+margin_bottom = 224.0
 theme = ExtResource( 2 )
-text = "Ambience
-"
+text = "Music"
 
 [node name="Button" type="Button" parent="Background/MarginContainer/VBoxContainer"]
 margin_left = 347.0

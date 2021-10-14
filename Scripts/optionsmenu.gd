@@ -1,20 +1,15 @@
 extends MarginContainer
 
-onready var masterBus := AudioServer.get_bus_index("Master")
-onready var musicBus := AudioServer.get_bus_index("Music")
-onready var ambienceBus := AudioServer.get_bus_index("Ambience")
-onready var effectBus := AudioServer.get_bus_index("Effects")
-
 var masterLevel = 0
 var ambienceLevel = 0
 var musicLevel = 0
 var effectLevel = 0
 
 func _ready() -> void:
-	masterLevel = db2linear(AudioServer.get_bus_volume_db(masterBus))
-	ambienceLevel = db2linear(AudioServer.get_bus_volume_db(musicBus))
-	musicLevel = db2linear(AudioServer.get_bus_volume_db(ambienceBus))
-	effectLevel = db2linear(AudioServer.get_bus_volume_db(effectBus))
+	masterLevel = db2linear(AudioServer.get_bus_volume_db(0))
+	musicLevel = db2linear(AudioServer.get_bus_volume_db(1))
+	ambienceLevel = db2linear(AudioServer.get_bus_volume_db(2))
+	effectLevel = db2linear(AudioServer.get_bus_volume_db(3))
 	
 	$Background/MarginContainer/VBoxContainer/Audio/Master/Master.value = masterLevel
 	$Background/MarginContainer/VBoxContainer/Audio/Ambience/Ambience.value = ambienceLevel
@@ -24,19 +19,19 @@ func _ready() -> void:
 
 
 func _on_Master_value_changed(value):
-	AudioServer.set_bus_volume_db(masterBus, linear2db(value))
+	AudioServer.set_bus_volume_db(0, linear2db(value))
 
 
 func _on_Ambience_value_changed(value):
-	AudioServer.set_bus_volume_db(ambienceBus, linear2db(value))
+	AudioServer.set_bus_volume_db(2, linear2db(value))
 
 
 func _on_Effects_value_changed(value):
-	AudioServer.set_bus_volume_db(effectBus, linear2db(value))
+	AudioServer.set_bus_volume_db(3, linear2db(value))
 
 
 func _on_Music_value_changed(value):
-	AudioServer.set_bus_volume_db(musicBus, linear2db(value))
+	AudioServer.set_bus_volume_db(1, linear2db(value))
 
 
 func _on_Button_pressed():

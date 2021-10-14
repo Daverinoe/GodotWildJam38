@@ -15,5 +15,15 @@ func _unhandled_input(event):
 
 func _on_MarginContainer_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-		get_tree().root.get_node("Game").currentMoney += value
+		var gameNode = get_tree().root.get_node("Game")
+		var currentNutrients = gameNode.nutrientLevels
+		
+		# If nutrients are "good", sell for more $$$!
+		if (currentNutrients < gameNode.upperOptimalNutrients) && (currentNutrients > gameNode.lowerOptimalNutrients):
+			value *= 1.25
+		elif (currentNutrients >= gameNode.tooNutrient): # But maybe nutrients are bad?? Then sell for less.
+			value *= 0.75
+		gameNode.currentMoney += value
+		
+		# Remove this node and also the object this is attached to
 		get_parent().call_deferred("queue_free")

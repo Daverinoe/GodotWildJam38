@@ -8,6 +8,9 @@ var minNutrients = 0
 var maxNutrients = 300
 var nutrientLevels = 0
 var nutrientsChange = 0
+var lowerOptimalNutrients = 130
+var upperOptimalNutrients = 170
+var tooNutrient = 180
 
 # Insects!
 var maxInsects = 0
@@ -18,9 +21,10 @@ func _ready():
 
 func _process(delta):
 	changeNutrientLevel(nutrientsChange * delta)
+	nutrientsChange = 0
+	
 	if currentMoney != previousMoney:
 		updateMoney()
-	print($Insects.get_child_count())
 
 func updateMoney():
 	previousMoney = currentMoney
@@ -28,7 +32,6 @@ func updateMoney():
 
 func changeNutrientLevel(amount) -> void:
 	nutrientLevels += amount
-	$Gauges/Gauge.needleRotation = (nutrientLevels / maxNutrients) - 150
 	
 
 func _on_Timer_timeout():

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://Scripts/gui.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/ButtonTheme.tres" type="Theme" id=2]
 
 [node name="GUI" type="MarginContainer"]
@@ -9,6 +10,7 @@ custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -35,7 +37,7 @@ margin_bottom = 50.0
 margin_right = 172.0
 margin_bottom = 50.0
 
-[node name="Button" type="Button" parent="Screen/TopBar/HBoxContainer/Menu"]
+[node name="MenuButton" type="Button" parent="Screen/TopBar/HBoxContainer/Menu"]
 margin_right = 172.0
 margin_bottom = 50.0
 theme = ExtResource( 2 )
@@ -76,3 +78,5 @@ size_flags_vertical = 3
 margin_top = 680.0
 margin_right = 1240.0
 margin_bottom = 680.0
+
+[connection signal="pressed" from="Screen/TopBar/HBoxContainer/Menu/MenuButton" to="." method="_on_MenuButton_pressed"]
