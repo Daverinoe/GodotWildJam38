@@ -1,20 +1,35 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/gui.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/fishtank.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/fish.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/plant.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Sprites/bubble.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/new_background.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/AddFish.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Sounds/Ambience/traffic.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Scripts/Audio.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Sounds/Ambience/water/stream6.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Assets/Sounds/Ambience/insekt001.ogg" type="AudioStream" id=10]
-[ext_resource path="res://Assets/Sprites/background.png" type="Texture" id=11]
-[ext_resource path="res://Scenes/Gauge.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Sprites/planter.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/gauge.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/fish.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Sprites/addFish.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 700, 150, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 6.25
+linear_accel_random = 1.0
+scale = 0.1
+scale_random = 0.1
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 3 )
@@ -29,6 +44,10 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Background/ParallaxLayer"]
 position = Vector2( 640.009, 360.022 )
+texture = ExtResource( 5 )
+
+[node name="planter" type="Sprite" parent="Background/ParallaxLayer/Sprite"]
+position = Vector2( -340.32, -54.0149 )
 texture = ExtResource( 11 )
 
 [node name="FishTank" parent="." instance=ExtResource( 2 )]
@@ -41,83 +60,11 @@ margin_right = 1280.0
 margin_bottom = 90.0
 
 [node name="Fish" type="Node2D" parent="."]
-position = Vector2( 0, 320 )
-
-[node name="Fish" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 711.398, 294.314 )
-
-[node name="Fish2" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 861.808, 242.681 )
-
-[node name="Fish3" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 951.605, 303.293 )
-
-[node name="Fish4" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 1113.24, 170.843 )
-
-[node name="Fish5" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 695.684, 149.516 )
-
-[node name="Fish6" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 479.048, 275.232 )
-
-[node name="Fish7" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 430.783, 174.211 )
-
-[node name="Fish8" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 314.047, 313.396 )
-
-[node name="Fish9" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 207.413, 168.598 )
-
-[node name="Fish10" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 365.68, 182.068 )
-
-[node name="Fish11" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 479.048, 275.232 )
-
-[node name="Fish12" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 430.783, 174.211 )
-
-[node name="Fish13" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 314.047, 313.396 )
-
-[node name="Fish14" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 207.413, 168.598 )
-
-[node name="Fish15" parent="Fish" instance=ExtResource( 4 )]
-position = Vector2( 365.68, 182.068 )
+position = Vector2( 70, 500 )
 
 [node name="Insects" type="Node2D" parent="."]
 
-[node name="Plants" type="Node2D" parent="."]
-
-[node name="Plant" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 60.6129, 310.922 )
-
-[node name="Plant2" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 313.167, 306.432 )
-
-[node name="Plant3" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 230.105, 310.922 )
-
-[node name="Plant4" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 142.553, 309.799 )
-
-[node name="Plant5" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 398.474, 307.554 )
-
-[node name="Plant6" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 651.028, 303.065 )
-
-[node name="Plant7" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 567.966, 307.554 )
-
-[node name="Plant8" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 480.414, 306.432 )
-
-[node name="Plant9" parent="Plants" instance=ExtResource( 6 )]
-position = Vector2( 735.212, 310.922 )
+[node name="Planters" type="Node2D" parent="."]
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
@@ -172,13 +119,39 @@ bus = "Music"
 [node name="Gauges" type="Node2D" parent="."]
 
 [node name="Gauge" parent="Gauges" instance=ExtResource( 12 )]
-position = Vector2( 61.4306, 406.041 )
-scale = Vector2( 2, 2 )
+position = Vector2( 1202.88, 155.039 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
 
+[node name="Bubbles" type="Particles2D" parent="."]
+position = Vector2( 642.378, 645.34 )
+amount = 12
+lifetime = 5.0
+explosiveness = 0.06
+randomness = 1.0
+visibility_rect = Rect2( 0, 0, 1, 1 )
+local_coords = false
+process_material = SubResource( 3 )
+texture = ExtResource( 4 )
+
+[node name="AddFish" type="Control" parent="."]
+margin_left = 47.0
+margin_top = 473.0
+margin_right = 97.0
+margin_bottom = 523.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+fish = ExtResource( 13 )
+FishNodePath = NodePath("../Fish")
+
+[node name="AddFishSprite" type="Sprite" parent="AddFish"]
+texture = ExtResource( 14 )
+
 [connection signal="finished" from="Audio/Music" to="Audio" method="_on_Music_finished"]
 [connection signal="timeout" from="Audio/Music/SongWaitTimer" to="Audio" method="_on_SongWaitTimer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="gui_input" from="AddFish" to="AddFish" method="_on_AddFish_gui_input"]

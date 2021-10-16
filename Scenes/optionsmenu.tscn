@@ -11,6 +11,8 @@ default_font = ExtResource( 4 )
 [node name="OptionsMenu" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 1.05945
+margin_bottom = 1.05945
 custom_constants/margin_right = 200
 custom_constants/margin_top = 113
 custom_constants/margin_left = 200
@@ -19,6 +21,8 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+MainMenuPath = NodePath("Background/MarginContainer/VBoxContainer/HBoxContainer/MainMenuButton")
+separator = NodePath("Background/MarginContainer/VBoxContainer/HBoxContainer/VSeparator")
 
 [node name="Background" type="PanelContainer" parent="."]
 margin_left = 200.0
@@ -150,18 +154,40 @@ margin_bottom = 224.0
 theme = ExtResource( 2 )
 text = "Music"
 
-[node name="Button" type="Button" parent="Background/MarginContainer/VBoxContainer"]
-margin_left = 347.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer"]
+margin_left = 107.0
 margin_top = 378.0
-margin_right = 519.0
+margin_right = 759.0
 margin_bottom = 424.0
 size_flags_horizontal = 4
+
+[node name="BackButton" type="Button" parent="Background/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 172.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource( 1 )
 text = "BACK"
+
+[node name="VSeparator" type="VSeparator" parent="Background/MarginContainer/VBoxContainer/HBoxContainer"]
+self_modulate = Color( 0.219608, 0.207843, 0.247059, 0 )
+margin_left = 176.0
+margin_right = 276.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+
+[node name="MainMenuButton" type="Button" parent="Background/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 280.0
+margin_right = 652.0
+margin_bottom = 46.0
+size_flags_horizontal = 0
+theme = ExtResource( 1 )
+text = "MAIN MENU"
 
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/Audio/Master/Master" to="." method="_on_Master_value_changed"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/Audio/Ambience/Ambience" to="." method="_on_Ambience_value_changed"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/Audio/Effects/Effects" to="." method="_on_Effects_value_changed"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/Audio/Music/Music" to="." method="_on_Music_value_changed"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/HBoxContainer/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]

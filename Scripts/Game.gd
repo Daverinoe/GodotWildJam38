@@ -8,9 +8,9 @@ var minNutrients = 0
 var maxNutrients = 300
 var nutrientLevels = 0
 var nutrientsChange = 0
-var lowerOptimalNutrients = 130
-var upperOptimalNutrients = 170
-var tooNutrient = 180
+var lowerOptimalNutrients = 110
+var upperOptimalNutrients = 230
+var tooNutrient = 250
 
 # Insects!
 var maxInsects = 0
@@ -45,3 +45,7 @@ func _on_Timer_timeout():
 		var insectList = $Insects.get_children()
 		var doomedInsect = insectList[0]
 		doomedInsect.call_deferred("queue_free")
+
+func addFish():
+	pass
+

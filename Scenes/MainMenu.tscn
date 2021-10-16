@@ -37,7 +37,7 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -215.0
-margin_right = 215.0
+margin_right = 293.0
 margin_bottom = 400.0
 rect_min_size = Vector2( 400, 400 )
 size_flags_horizontal = 3
@@ -45,14 +45,14 @@ size_flags_vertical = 3
 theme = ExtResource( 2 )
 custom_fonts/normal_font = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "[center]
-TOWER
-OF
-THYME[/center]"
+bbcode_text = "[color=teal][center]
+NO
+[wave amp=50 freq=4]THYME[/wave]
+TO WASTE[/center][/color]"
 text = "
-TOWER
-OF
-THYME"
+NO
+THYME
+TO WASTE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -107,7 +107,7 @@ __meta__ = {
 position = Vector2( 640, 360 )
 scale = Vector2( 30, 17 )
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="Bubbles" type="Particles2D" parent="."]
 position = Vector2( 644.041, 358.313 )
 amount = 12
 lifetime = 5.0

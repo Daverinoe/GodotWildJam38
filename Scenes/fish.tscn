@@ -42,8 +42,8 @@ shader_param/y_amplitude = 4.0
 shader_param/inclination = 5.0
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 5.13043
-height = 8.43071
+radius = 5.0
+height = 8.0
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 40.0
@@ -69,7 +69,7 @@ hframes = 3
 vframes = 4
 frame = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 scale = Vector2( 2, 2 )
 shape = SubResource( 3 )
@@ -94,6 +94,17 @@ shape = SubResource( 4 )
 [node name="CenterCheck" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 50, 0 )
+
+[node name="FishControl" type="Control" parent="."]
+margin_left = -19.0
+margin_top = -11.0
+margin_right = 19.0
+margin_bottom = 11.0
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="input_event" from="." to="." method="_on_Fish_input_event"]
 [connection signal="timeout" from="Adolescence" to="." method="_on_Adolescence_timeout"]

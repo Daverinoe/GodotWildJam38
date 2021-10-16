@@ -151,6 +151,9 @@ func _on_Adolescence_timeout():
 	nutrientsGenerated *= 2
 	insectsEaten *= 2
 	
+	$CollisionShape.shape.radius = 7
+	$CollisionShape.shape.height = 12
+	
 	$Adulthood.start()
 
 
@@ -163,10 +166,13 @@ func _on_Adulthood_timeout():
 	
 	nutrientsGenerated *= 2
 	insectsEaten *= 2
+	
+	$CollisionShape.shape.radius = 7
+	$CollisionShape.shape.height = 16
 
 
 func _on_Fish_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+	if event.is_action_pressed("select"):
 		var sellInstance = sellDialogue.instance()
 		self.call_deferred("add_child", sellInstance)
 		sellInstance.get_node("SellDialogue/MarginContainer/Background/Sell").text = str(round(value))

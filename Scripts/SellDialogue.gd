@@ -9,12 +9,12 @@ func _physics_process(_delta):
 	self.global_rotation = 0.0
 
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+	if event.is_action_pressed("select"):
 		self.call_deferred("queue_free")
 
 
 func _on_MarginContainer_gui_input(event):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+	if event.is_action_pressed("select"):
 		var gameNode = get_tree().root.get_node("Game")
 		var currentNutrients = gameNode.nutrientLevels
 		

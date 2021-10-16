@@ -28,7 +28,7 @@ func _on_ClickArea_input_event(_viewport, event, _shape_idx):
 		self.call_deferred("add_child", sellInstance)
 		sellInstance.get_node("SellDialogue/MarginContainer/Background/Sell").text = str(round(value))
 		sellInstance.value = value
-		changeMaxInsects(-6)
+		changeMaxInsects(-ceil(2 * nutrientsTaken))
 
 
 func _on_Grow1_timeout():
