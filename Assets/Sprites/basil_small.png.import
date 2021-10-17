@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/water_output.png-2fbeb92f8a73cd4652f22e73b9ddc88e.stex"
+path="res://.import/basil_small.png-b8b35e97a9d3ff3946d295eb3f970299.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/water_output.png"
-dest_files=[ "res://.import/water_output.png-2fbeb92f8a73cd4652f22e73b9ddc88e.stex" ]
+source_file="res://Assets/Sprites/basil_small.png"
+dest_files=[ "res://.import/basil_small.png-b8b35e97a9d3ff3946d295eb3f970299.stex" ]
 
 [params]
 

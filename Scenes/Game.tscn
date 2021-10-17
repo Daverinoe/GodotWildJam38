@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scenes/gui.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/fishtank.tscn" type="PackedScene" id=2]
@@ -10,16 +10,33 @@
 [ext_resource path="res://Scripts/Audio.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Sounds/Ambience/water/stream6.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Assets/Sounds/Ambience/insekt001.ogg" type="AudioStream" id=10]
-[ext_resource path="res://Assets/Sprites/planter.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/planter.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/gauge.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/fish.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/Sprites/addFish.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/coin.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/pump_input.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/water_filter.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/water_flow.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Sprites/water_exit.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Sprites/water_pump.png" type="Texture" id=20]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 1
+emission_sphere_radius = 50.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.7
+orbit_velocity_random = 0.2
+radial_accel = -1000.0
+scale = 0.2
+scale_random = 0.1
 
 [sub_resource type="RectangleShape2D" id=2]
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="RectangleShape2D" id=3]
+
+[sub_resource type="ParticlesMaterial" id=4]
 emission_shape = 2
 emission_box_extents = Vector3( 700, 150, 1 )
 flag_disable_z = true
@@ -35,20 +52,175 @@ scale_random = 0.1
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_horizontal_guides_": [ -3.06055 ],
+"_edit_lock_": true,
 "_edit_vertical_guides_": [ 0.386108 ]
 }
 
 [node name="Background" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
-[node name="Sprite" type="Sprite" parent="Background/ParallaxLayer"]
-position = Vector2( 640.009, 360.022 )
+[node name="Background" type="Sprite" parent="Background/ParallaxLayer"]
+position = Vector2( 641.32, 360.022 )
 texture = ExtResource( 5 )
 
-[node name="planter" type="Sprite" parent="Background/ParallaxLayer/Sprite"]
-position = Vector2( -340.32, -54.0149 )
-texture = ExtResource( 11 )
+[node name="TankAccessories" type="Node2D" parent="."]
+
+[node name="PumpIn" type="Sprite" parent="TankAccessories"]
+position = Vector2( 48.7571, 348.993 )
+texture = ExtResource( 16 )
+
+[node name="Filter" type="Sprite" parent="TankAccessories"]
+position = Vector2( 52.0923, 360.326 )
+texture = ExtResource( 17 )
+
+[node name="Filter2" type="Sprite" parent="TankAccessories"]
+position = Vector2( 1217.1, 360.859 )
+texture = ExtResource( 17 )
+
+[node name="Pump" type="Sprite" parent="TankAccessories"]
+position = Vector2( 67.4994, 325.759 )
+texture = ExtResource( 20 )
+
+[node name="Pipe" type="Sprite" parent="TankAccessories"]
+position = Vector2( 95.795, 342 )
+texture = ExtResource( 18 )
+
+[node name="Pipe2" type="Sprite" parent="TankAccessories"]
+position = Vector2( 86.392, 342 )
+texture = ExtResource( 18 )
+
+[node name="Pipe3" type="Sprite" parent="TankAccessories"]
+position = Vector2( 1176.44, 341.603 )
+texture = ExtResource( 18 )
+
+[node name="Pipe4" type="Sprite" parent="TankAccessories"]
+position = Vector2( 1186.33, 341.603 )
+texture = ExtResource( 18 )
+
+[node name="Pipe5" type="Sprite" parent="TankAccessories"]
+position = Vector2( 1196.22, 341.603 )
+texture = ExtResource( 18 )
+
+[node name="Pipe6" type="Sprite" parent="TankAccessories"]
+position = Vector2( 1205.9, 341.603 )
+texture = ExtResource( 18 )
+
+[node name="PumpOut" type="Sprite" parent="TankAccessories"]
+position = Vector2( 1217.73, 344.638 )
+texture = ExtResource( 19 )
+
+[node name="ConnectPipe" type="Node2D" parent="TankAccessories"]
+position = Vector2( 0, -28 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Pipe3" type="Sprite" parent="TankAccessories/ConnectPipe"]
+position = Vector2( 383.658, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe4" type="Sprite" parent="TankAccessories/ConnectPipe"]
+position = Vector2( 393.328, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe5" type="Sprite" parent="TankAccessories/ConnectPipe"]
+position = Vector2( 403.104, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe6" type="Sprite" parent="TankAccessories/ConnectPipe"]
+position = Vector2( 412.879, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe7" type="Sprite" parent="TankAccessories/ConnectPipe"]
+position = Vector2( 422.129, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe8" type="Sprite" parent="TankAccessories/ConnectPipe"]
+position = Vector2( 431.589, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe9" type="Sprite" parent="TankAccessories/ConnectPipe"]
+position = Vector2( 440.839, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe10" type="Sprite" parent="TankAccessories/ConnectPipe"]
+position = Vector2( 449.458, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe11" type="Sprite" parent="TankAccessories/ConnectPipe"]
+position = Vector2( 459.234, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe12" type="Sprite" parent="TankAccessories/ConnectPipe"]
+position = Vector2( 468.589, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe13" type="Sprite" parent="TankAccessories/ConnectPipe"]
+position = Vector2( 478.259, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe14" type="Sprite" parent="TankAccessories/ConnectPipe"]
+position = Vector2( 487.929, 370 )
+texture = ExtResource( 18 )
+
+[node name="ConnectPipe2" type="Node2D" parent="TankAccessories"]
+position = Vector2( 407.058, -27.882 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Pipe3" type="Sprite" parent="TankAccessories/ConnectPipe2"]
+position = Vector2( 383.658, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe4" type="Sprite" parent="TankAccessories/ConnectPipe2"]
+position = Vector2( 393.328, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe5" type="Sprite" parent="TankAccessories/ConnectPipe2"]
+position = Vector2( 403.104, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe6" type="Sprite" parent="TankAccessories/ConnectPipe2"]
+position = Vector2( 412.879, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe7" type="Sprite" parent="TankAccessories/ConnectPipe2"]
+position = Vector2( 422.129, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe8" type="Sprite" parent="TankAccessories/ConnectPipe2"]
+position = Vector2( 431.589, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe9" type="Sprite" parent="TankAccessories/ConnectPipe2"]
+position = Vector2( 440.839, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe10" type="Sprite" parent="TankAccessories/ConnectPipe2"]
+position = Vector2( 449.458, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe11" type="Sprite" parent="TankAccessories/ConnectPipe2"]
+position = Vector2( 459.234, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe12" type="Sprite" parent="TankAccessories/ConnectPipe2"]
+position = Vector2( 468.589, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe13" type="Sprite" parent="TankAccessories/ConnectPipe2"]
+position = Vector2( 478.259, 370 )
+texture = ExtResource( 18 )
+
+[node name="Pipe14" type="Sprite" parent="TankAccessories/ConnectPipe2"]
+position = Vector2( 487.929, 370 )
+texture = ExtResource( 18 )
 
 [node name="FishTank" parent="." instance=ExtResource( 2 )]
 position = Vector2( 640.002, 540.111 )
@@ -59,34 +231,79 @@ anchor_bottom = 0.0
 margin_right = 1280.0
 margin_bottom = 90.0
 
+[node name="MoneyAddTimer" type="Timer" parent="GUI"]
+one_shot = true
+
+[node name="MoneyAddParticles" type="Particles2D" parent="GUI"]
+position = Vector2( 1189.81, 42.6535 )
+z_index = -1
+emitting = false
+lifetime = 0.2
+process_material = SubResource( 1 )
+texture = ExtResource( 15 )
+
 [node name="Fish" type="Node2D" parent="."]
 position = Vector2( 70, 500 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Insects" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Planters" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Planter" parent="Planters" instance=ExtResource( 11 )]
+position = Vector2( 250, 280 )
+
+[node name="Planter2" parent="Planters" instance=ExtResource( 11 )]
+position = Vector2( 636.75, 280 )
+
+[node name="Planter3" parent="Planters" instance=ExtResource( 11 )]
+position = Vector2( 1023, 280 )
 
 [node name="Walls" type="StaticBody2D" parent="."]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="LeftWall" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -10, 360 )
 scale = Vector2( 1, 38 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="RightWall" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 1290, 360 )
 scale = Vector2( 1, 38 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="TopWall" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 640, -10 )
 scale = Vector2( 66, 1 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="BottomWall" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 640, 730 )
 scale = Vector2( 66, 1 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Audio" type="Node" parent="."]
 script = ExtResource( 8 )
@@ -117,6 +334,11 @@ bus = "Music"
 [node name="SongWaitTimer" type="Timer" parent="Audio/Music"]
 
 [node name="Gauges" type="Node2D" parent="."]
+position = Vector2( 0, -22 )
+z_index = -2
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Gauge" parent="Gauges" instance=ExtResource( 12 )]
 position = Vector2( 1202.88, 155.039 )
@@ -133,24 +355,32 @@ explosiveness = 0.06
 randomness = 1.0
 visibility_rect = Rect2( 0, 0, 1, 1 )
 local_coords = false
-process_material = SubResource( 3 )
+process_material = SubResource( 4 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="AddFish" type="Control" parent="."]
-margin_left = 47.0
-margin_top = 473.0
-margin_right = 97.0
-margin_bottom = 523.0
+margin_left = 25.1367
+margin_top = 470.477
+margin_right = 75.1367
+margin_bottom = 520.477
+hint_tooltip = "Add fish (-$10)"
+mouse_default_cursor_shape = 2
 script = ExtResource( 6 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 fish = ExtResource( 13 )
 FishNodePath = NodePath("../Fish")
 
 [node name="AddFishSprite" type="Sprite" parent="AddFish"]
+position = Vector2( 23.1247, 27.3292 )
 texture = ExtResource( 14 )
 
+[connection signal="timeout" from="GUI/MoneyAddTimer" to="." method="_on_MoneyAddTimer_timeout"]
 [connection signal="finished" from="Audio/Music" to="Audio" method="_on_Music_finished"]
 [connection signal="timeout" from="Audio/Music/SongWaitTimer" to="Audio" method="_on_SongWaitTimer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

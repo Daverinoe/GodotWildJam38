@@ -1,45 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Sprites/spritesheet.tres" type="Texture" id=1]
 [ext_resource path="res://Scripts/Fish.gd" type="Script" id=2]
-
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-uniform float phase;
-
-uniform float speed = 2.0;
-uniform float x_frequency = 1.2;
-uniform float y_frequency = 1.2;
-uniform float x_amplitude = 1.5;
-uniform float y_amplitude = 1.5;
-uniform float inclination = 2.0;
-
-void vertex(){
-	VERTEX.y += sin((UV.x - TIME * speed + phase) * y_frequency) * y_amplitude * UV.x;
-	VERTEX.x += cos((UV.y - TIME * speed - phase) * x_frequency) * x_amplitude * UV.y;
-	VERTEX.x -= UV.y * inclination;
-}
-
-void fragment(){
-	vec3 sample = texture(TEXTURE, UV).rgb;
-	vec3 timeoffset = (cos(TIME + phase) * cos(4.0 * UV.x) * vec3(1.0) * 0.1 + 0.1);
-	vec3 shading = smoothstep(0.3, 1.0, UV.y) * vec3(0.5);
-	
-	vec4 color = vec4(sample + timeoffset - shading, texture(TEXTURE, UV).a);
-	COLOR = color;
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-resource_local_to_scene = true
-shader = SubResource( 1 )
-shader_param/phase = null
-shader_param/speed = 2.0
-shader_param/x_frequency = 2.0
-shader_param/y_frequency = 2.0
-shader_param/x_amplitude = 4.0
-shader_param/y_amplitude = 4.0
-shader_param/inclination = 5.0
+[ext_resource path="res://Assets/Materials/fish.tres" type="Material" id=3]
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 5.0
@@ -62,7 +25,7 @@ speed = 1.0
 maxSpeed = 3.0
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 2 )
+material = ExtResource( 3 )
 position = Vector2( 0, 0.264862 )
 texture = ExtResource( 1 )
 hframes = 3
@@ -95,18 +58,9 @@ shape = SubResource( 4 )
 enabled = true
 cast_to = Vector2( 50, 0 )
 
-[node name="FishControl" type="Control" parent="."]
-margin_left = -19.0
-margin_top = -11.0
-margin_right = 19.0
-margin_bottom = 11.0
-mouse_filter = 2
-mouse_default_cursor_shape = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [connection signal="input_event" from="." to="." method="_on_Fish_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_Fish_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Fish_mouse_exited"]
 [connection signal="timeout" from="Adolescence" to="." method="_on_Adolescence_timeout"]
 [connection signal="timeout" from="Adulthood" to="." method="_on_Adulthood_timeout"]
 [connection signal="body_entered" from="FlockDetector" to="." method="_on_FlockDetector_body_entered"]

@@ -27,8 +27,14 @@ func _process(delta):
 		updateMoney()
 
 func updateMoney():
-	previousMoney = currentMoney
 	$GUI.get_node("Screen/TopBar/HBoxContainer/Money/Label").text = "$" + str(currentMoney)
+	if currentMoney - previousMoney > 0:
+		$GUI/MoneyAddParticles.process_material.radial_accel = -1000
+	elif currentMoney - previousMoney < 0:
+		$GUI/MoneyAddParticles.process_material.radial_accel = 1000
+	$GUI/MoneyAddTimer.start()
+	$GUI/MoneyAddParticles.emitting = true
+	previousMoney = ceil(currentMoney)
 
 func changeNutrientLevel(amount) -> void:
 	nutrientLevels += amount
@@ -46,6 +52,5 @@ func _on_Timer_timeout():
 		var doomedInsect = insectList[0]
 		doomedInsect.call_deferred("queue_free")
 
-func addFish():
-	pass
-
+func _on_MoneyAddTimer_timeout():
+	$GUI/MoneyAddParticles.emitting = false

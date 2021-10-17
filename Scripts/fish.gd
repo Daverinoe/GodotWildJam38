@@ -173,7 +173,23 @@ func _on_Adulthood_timeout():
 
 func _on_Fish_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed("select"):
+		var gameNode = get_tree().root.get_node("Game")
+		var modifier = 1
 		var sellInstance = sellDialogue.instance()
 		self.call_deferred("add_child", sellInstance)
-		sellInstance.get_node("SellDialogue/MarginContainer/Background/Sell").text = str(round(value))
+		# If nutrients are "good", sell for more $$$!
+		if (gameNode.nutrientLevels < gameNode.upperOptimalNutrients) && (gameNode.nutrientLevels > gameNode.lowerOptimalNutrients):
+			modifier = 1.25
+		elif (gameNode.nutrientLevels >= gameNode.tooNutrient): # But maybe nutrients are bad?? Then sell for less.
+			modifier = 0.75
+		sellInstance.get_node("SellDialogue/MarginContainer/Background/Sell").text = str(ceil(value * modifier))
 		sellInstance.value = value
+
+
+func _on_Fish_mouse_entered():
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	
+func _on_Fish_mouse_exited():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+
+

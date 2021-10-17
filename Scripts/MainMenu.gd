@@ -14,7 +14,6 @@ func _init():
 		fishInstance.get_node("Adolescence").wait_time = randi() % 100 + 0.1
 		fishInstance.get_node("Adulthood").wait_time = randi() % 100 + 0.1
 		fishInstance.position = Vector2(randf() * 1280, randf() * 720)
-		fishInstance.get_node("FishControl").visible = false
 		self.call_deferred("add_child", fishInstance)
 		if willGrow < 50:
 			fishInstance.get_node("Adulthood").disconnect("timeout", fishInstance, "_on_Adulthood_timeout")

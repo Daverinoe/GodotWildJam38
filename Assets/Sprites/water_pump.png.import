@@ -14,13 +14,13 @@ dest_files=[ "res://.import/water_pump.png-0f7b3cc2eeef9c0363e81acf6740c8dc.stex
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

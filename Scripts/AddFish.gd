@@ -16,5 +16,7 @@ func _ready():
 
 func _on_AddFish_gui_input(event):
 	if event.is_action_pressed("select"):
-		var fishInstance = fish.instance()
-		FishNode.call_deferred("add_child", fishInstance)
+		if get_parent().currentMoney >= 10:
+			var fishInstance = fish.instance()
+			get_parent().currentMoney -= 10
+			FishNode.call_deferred("add_child", fishInstance)

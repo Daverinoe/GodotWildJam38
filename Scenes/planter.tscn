@@ -1,13 +1,81 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Sprites/planter.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/planter_glass.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/planter.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/plant.tscn" type="PackedScene" id=4]
 
 [node name="Planter" type="Sprite"]
 texture = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_horizontal_guides_": [ -36.3185 ],
+"_edit_vertical_guides_": [ 97.9814 ]
+}
+plant = ExtResource( 4 )
 
 [node name="Control" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = -131.0
+margin_top = -36.0
+margin_right = -92.0
+margin_bottom = -21.0
+rect_pivot_offset = Vector2( 33.1755, 7.5 )
+hint_tooltip = "Add plant (-$5)"
+mouse_default_cursor_shape = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Control2" type="Control" parent="."]
+margin_left = -61.922
+margin_top = -36.0
+margin_right = -22.922
+margin_bottom = -21.0
+rect_pivot_offset = Vector2( 33.1755, 7.5 )
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control3" type="Control" parent="."]
+margin_left = 9.15817
+margin_top = -36.0
+margin_right = 48.1582
+margin_bottom = -21.0
+rect_pivot_offset = Vector2( 33.1755, 7.5 )
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control4" type="Control" parent="."]
+margin_left = 78.2361
+margin_top = -36.0
+margin_right = 117.236
+margin_bottom = -21.0
+rect_pivot_offset = Vector2( 33.1755, 7.5 )
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GlassCover" type="Sprite" parent="."]
+z_index = 1
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Plant1" type="Node2D" parent="."]
+
+[node name="Plant2" type="Node2D" parent="."]
+
+[node name="Plant3" type="Node2D" parent="."]
+
+[node name="Plant4" type="Node2D" parent="."]
+
+[connection signal="gui_input" from="Control" to="." method="_on_Control_gui_input"]
+[connection signal="gui_input" from="Control2" to="." method="_on_Control2_gui_input"]
+[connection signal="gui_input" from="Control3" to="." method="_on_Control3_gui_input"]
+[connection signal="gui_input" from="Control4" to="." method="_on_Control4_gui_input"]
