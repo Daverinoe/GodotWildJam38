@@ -13,7 +13,7 @@
 [ext_resource path="res://Scenes/planter.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/gauge.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/fish.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Assets/Sprites/addFish.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/addFish.tres" type="Texture" id=14]
 [ext_resource path="res://Assets/Sprites/coin.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Sprites/pump_input.png" type="Texture" id=16]
 [ext_resource path="res://Assets/Sprites/water_filter.png" type="Texture" id=17]
@@ -21,22 +21,11 @@
 [ext_resource path="res://Assets/Sprites/water_exit.png" type="Texture" id=19]
 [ext_resource path="res://Assets/Sprites/water_pump.png" type="Texture" id=20]
 
-[sub_resource type="ParticlesMaterial" id=1]
-emission_shape = 1
-emission_sphere_radius = 50.0
-flag_disable_z = true
-gravity = Vector3( 0, 0, 0 )
-orbit_velocity = 0.7
-orbit_velocity_random = 0.2
-radial_accel = -1000.0
-scale = 0.2
-scale_random = 0.1
+[sub_resource type="RectangleShape2D" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
 
-[sub_resource type="RectangleShape2D" id=3]
-
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 2
 emission_box_extents = Vector3( 700, 150, 1 )
 flag_disable_z = true
@@ -46,6 +35,17 @@ orbit_velocity_random = 0.0
 linear_accel = 6.25
 linear_accel_random = 1.0
 scale = 0.1
+scale_random = 0.1
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 50.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.7
+orbit_velocity_random = 0.2
+radial_accel = -1000.0
+scale = 0.2
 scale_random = 0.1
 
 [node name="Game" type="Node2D"]
@@ -226,22 +226,6 @@ texture = ExtResource( 18 )
 position = Vector2( 640.002, 540.111 )
 scale = Vector2( 25.6, 7.2 )
 
-[node name="GUI" parent="." instance=ExtResource( 1 )]
-anchor_bottom = 0.0
-margin_right = 1280.0
-margin_bottom = 90.0
-
-[node name="MoneyAddTimer" type="Timer" parent="GUI"]
-one_shot = true
-
-[node name="MoneyAddParticles" type="Particles2D" parent="GUI"]
-position = Vector2( 1189.81, 42.6535 )
-z_index = -1
-emitting = false
-lifetime = 0.2
-process_material = SubResource( 1 )
-texture = ExtResource( 15 )
-
 [node name="Fish" type="Node2D" parent="."]
 position = Vector2( 70, 500 )
 __meta__ = {
@@ -276,7 +260,7 @@ __meta__ = {
 [node name="LeftWall" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -10, 360 )
 scale = Vector2( 1, 38 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -284,7 +268,7 @@ __meta__ = {
 [node name="RightWall" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 1290, 360 )
 scale = Vector2( 1, 38 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -292,7 +276,7 @@ __meta__ = {
 [node name="TopWall" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 640, -10 )
 scale = Vector2( 66, 1 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -300,7 +284,7 @@ __meta__ = {
 [node name="BottomWall" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 640, 730 )
 scale = Vector2( 66, 1 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -355,7 +339,7 @@ explosiveness = 0.06
 randomness = 1.0
 visibility_rect = Rect2( 0, 0, 1, 1 )
 local_coords = false
-process_material = SubResource( 4 )
+process_material = SubResource( 3 )
 texture = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true
@@ -380,8 +364,24 @@ FishNodePath = NodePath("../Fish")
 position = Vector2( 23.1247, 27.3292 )
 texture = ExtResource( 14 )
 
-[connection signal="timeout" from="GUI/MoneyAddTimer" to="." method="_on_MoneyAddTimer_timeout"]
+[node name="GUI" parent="." instance=ExtResource( 1 )]
+anchor_bottom = 0.0
+margin_right = 1280.0
+margin_bottom = 144.0
+
+[node name="MoneyAddTimer" type="Timer" parent="GUI"]
+one_shot = true
+
+[node name="MoneyAddParticles" type="Particles2D" parent="GUI"]
+position = Vector2( 1189.81, 42.6535 )
+z_index = -1
+emitting = false
+lifetime = 0.2
+process_material = SubResource( 4 )
+texture = ExtResource( 15 )
+
 [connection signal="finished" from="Audio/Music" to="Audio" method="_on_Music_finished"]
 [connection signal="timeout" from="Audio/Music/SongWaitTimer" to="Audio" method="_on_SongWaitTimer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="gui_input" from="AddFish" to="AddFish" method="_on_AddFish_gui_input"]
+[connection signal="timeout" from="GUI/MoneyAddTimer" to="." method="_on_MoneyAddTimer_timeout"]

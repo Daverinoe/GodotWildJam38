@@ -45,9 +45,9 @@ func _ready():
 	# Random choice of fish sprite
 	var randFish = randi() % 2
 	if randFish:
-		$Sprite.frame = 6
+		$Sprite.frame = 0
 	else:
-		$Sprite.frame = 9
+		$Sprite.frame = 3
 
 func _process(_delta):
 	if get_tree().root.get_node_or_null("Game"):

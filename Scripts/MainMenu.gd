@@ -21,7 +21,7 @@ func _init():
 			fishInstance.get_node("Adolescence").disconnect("timeout", fishInstance, "_on_Adolescence_timeout")
 
 func _on_Start_pressed():
-	get_tree().change_scene(game)
+	get_tree().call_deferred("change_scene", game)
 
 func _on_Exit_pressed():
 	get_tree().quit()

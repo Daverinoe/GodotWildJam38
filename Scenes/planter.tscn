@@ -60,13 +60,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GlassCover" type="Sprite" parent="."]
-z_index = 1
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="Plant1" type="Node2D" parent="."]
 
 [node name="Plant2" type="Node2D" parent="."]
@@ -74,6 +67,12 @@ __meta__ = {
 [node name="Plant3" type="Node2D" parent="."]
 
 [node name="Plant4" type="Node2D" parent="."]
+
+[node name="GlassCover" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="gui_input" from="Control" to="." method="_on_Control_gui_input"]
 [connection signal="gui_input" from="Control2" to="." method="_on_Control2_gui_input"]

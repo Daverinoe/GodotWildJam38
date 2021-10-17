@@ -23,6 +23,7 @@ func _ready() -> void:
 	if parent == "MainMenu":
 		get_node(MainMenuPath).visible = false
 		get_node(separator).visible = false
+	
 
 
 

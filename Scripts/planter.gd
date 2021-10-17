@@ -12,7 +12,7 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _process(delta):
+func _process(_delta):
 	for child in self.get_children():
 		if child.get_child_count() == 0:
 			if child.name == "Plant1":

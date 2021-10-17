@@ -18,7 +18,7 @@ void vertex(){
 void fragment(){
 	vec3 sample = texture(TEXTURE, UV).rgb;
 	vec3 timeoffset = (cos(TIME + phase) * cos(4.0 * UV.x) * vec3(1.0) * 0.1 + 0.1);
-	vec3 shading = smoothstep(0.3, 1.0, UV.y) * vec3(0.5);
+	vec3 shading = smoothstep(0.2, 0.35, UV.y) * vec3(0.3);
 	
 	vec4 color = vec4(sample + timeoffset - shading, texture(TEXTURE, UV).a);
 	COLOR = color;

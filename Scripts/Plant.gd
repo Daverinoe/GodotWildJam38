@@ -11,6 +11,7 @@ func _process(_delta):
 	get_tree().root.get_node("Game").nutrientsChange -= nutrientsTaken
 
 func _ready():
+	randomize()
 	material.set_shader_param("offset", randf() * 2.0 - 1.0)
 	
 	changeMaxInsects(2)
@@ -20,12 +21,10 @@ func _ready():
 		animation = "Thyme"
 		frame = 0
 		self.offset = Vector2(-2, -2)
-		$Control.rect_size = self.get_sprite_frames().get_frame("Thyme", 0).get_size()
 	else:
 		animation = "Basil"
 		frame = 0
 		self.offset.y = -2
-		$Control.rect_size = self.get_sprite_frames().get_frame("Basil", 0).get_size()
 
 
 func _on_ClickArea_input_event(_viewport, event, _shape_idx):

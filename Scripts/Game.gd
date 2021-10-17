@@ -22,6 +22,7 @@ func _ready():
 func _process(delta):
 	changeNutrientLevel(nutrientsChange * delta)
 	nutrientsChange = 0
+	maxInsects = clamp(maxInsects, 0, 30)
 	
 	if currentMoney != previousMoney:
 		updateMoney()

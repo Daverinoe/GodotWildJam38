@@ -1,17 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/plant.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/plant.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://Assets/Materials/plantMaterial.tres" type="Material" id=8]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 28.076, 48.7832 )
-
 [node name="Plant" type="AnimatedSprite"]
 material = ExtResource( 8 )
 frames = ExtResource( 2 )
 animation = "Thyme"
-frame = 1
 offset = Vector2( -6, -18 )
 script = ExtResource( 1 )
 
@@ -24,16 +20,10 @@ autostart = true
 wait_time = 30.0
 one_shot = true
 
-[node name="ClickArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
-shape = SubResource( 2 )
-
 [node name="Control" type="Control" parent="."]
-margin_left = -21.0224
-margin_top = -40.363
-margin_right = 18.9776
-margin_bottom = -0.363026
+margin_left = -6.0
+margin_top = -15.0
+margin_right = 9.0
 mouse_default_cursor_shape = 2
 __meta__ = {
 "_edit_use_anchors_": false
