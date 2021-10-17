@@ -21,10 +21,12 @@ func _ready():
 		animation = "Thyme"
 		frame = 0
 		self.offset = Vector2(-2, -2)
+		$Roots.offset = Vector2(2, -2)
 	else:
 		animation = "Basil"
 		frame = 0
 		self.offset.y = -2
+		$Roots.offset = Vector2(2, -2)
 
 
 func _on_ClickArea_input_event(_viewport, event, _shape_idx):
@@ -39,29 +41,35 @@ func _on_ClickArea_input_event(_viewport, event, _shape_idx):
 func _on_Grow1_timeout():
 	value = 15
 	frame += 1
+	$Roots.frame += 1
 	nutrientsTaken *= 2
 	changeMaxInsects(2)
 	$Grow2.start()
 	$Grow1.stop()
 	if animation == "Thyme":
 		self.offset = Vector2(-3, -10)
+		$Roots.offset = Vector2(2, 10)
 		$Control.rect_size = self.get_sprite_frames().get_frame("Thyme", 1).get_size()
 	else:
 		self.offset = Vector2(-1, -10)
+		$Roots.offset = Vector2(2, 10)
 		$Control.rect_size = self.get_sprite_frames().get_frame("Basil", 1).get_size()
 
 
 func _on_Grow2_timeout():
 	value = 40
 	frame += 1
+	$Roots.frame += 1
 	nutrientsTaken *= 2
 	changeMaxInsects(2)
 	$Grow2.stop()
 	if animation == "Thyme":
 		self.offset = Vector2(-6, -18)
+		$Roots.offset = Vector2(2, 18)
 		$Control.rect_size = self.get_sprite_frames().get_frame("Thyme", 2).get_size()
 	else:
 		self.offset = Vector2(0, -18)
+		$Roots.offset = Vector2(2, 18)
 		$Control.rect_size = self.get_sprite_frames().get_frame("Basil", 2).get_size()
 
 func changeMaxInsects(x):

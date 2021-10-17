@@ -1,8 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/plant.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/plant.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://Assets/Sprites/roots_medium.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/roots_large.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/roots_small.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Materials/plantMaterial.tres" type="Material" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "root",
+"speed": 5.0
+} ]
 
 [node name="Plant" type="AnimatedSprite"]
 material = ExtResource( 8 )
@@ -28,6 +39,12 @@ mouse_default_cursor_shape = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Roots" type="AnimatedSprite" parent="."]
+self_modulate = Color( 0.631373, 0.929412, 1, 0.733333 )
+position = Vector2( -4.97981, 21.0983 )
+frames = SubResource( 1 )
+animation = "root"
 
 [connection signal="timeout" from="Grow1" to="." method="_on_Grow1_timeout"]
 [connection signal="timeout" from="Grow2" to="." method="_on_Grow2_timeout"]
