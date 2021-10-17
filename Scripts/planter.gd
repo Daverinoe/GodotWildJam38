@@ -25,9 +25,11 @@ func _process(delta):
 				plant4 = false
 
 func AddPlant(position, node):
-	var plantInstance = plant.instance()
-	plantInstance.position = position
-	node.call_deferred("add_child", plantInstance)
+	if get_tree().root.get_node("Game").currentMoney >= 5:
+		get_tree().root.get_node("Game").currentMoney -= 5
+		var plantInstance = plant.instance()
+		plantInstance.position = position
+		node.call_deferred("add_child", plantInstance)
 
 
 func _on_Control_gui_input(event):

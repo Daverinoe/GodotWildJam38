@@ -12,7 +12,7 @@ config_version=4
 
 config/name="GWJ38"
 run/main_scene="res://Scenes/mainmenu.tscn"
-config/icon="res://Assets/Sprites/icon.png"
+config/icon="res://Assets/Sprites/addFish.png"
 
 [display]
 
