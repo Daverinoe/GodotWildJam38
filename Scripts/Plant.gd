@@ -25,8 +25,8 @@ func _ready():
 	else:
 		animation = "Basil"
 		frame = 0
-		self.offset.y = -2
-		$Roots.offset = Vector2(2, -2)
+		self.offset = Vector2(0, -2)
+		$Roots.offset = Vector2(1, -2)
 
 
 func _on_ClickArea_input_event(_viewport, event, _shape_idx):

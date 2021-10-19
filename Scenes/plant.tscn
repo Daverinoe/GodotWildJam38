@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/plant.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/plant.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://Assets/Sprites/roots_medium.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/roots_large.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Sprites/roots_small.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Materials/planterbox.tres" type="Material" id=6]
 [ext_resource path="res://Assets/Materials/plantMaterial.tres" type="Material" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -42,7 +43,8 @@ __meta__ = {
 
 [node name="Roots" type="AnimatedSprite" parent="."]
 self_modulate = Color( 0.631373, 0.929412, 1, 0.733333 )
-position = Vector2( -4.97981, 21.0983 )
+material = ExtResource( 6 )
+position = Vector2( -4.97981, 23.0983 )
 frames = SubResource( 1 )
 animation = "root"
 

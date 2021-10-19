@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Sprites/planter.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/planter_glass.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/planter.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/plant.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Sprites/planterbox.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Materials/planterbox.tres" type="Material" id=6]
 
 [node name="Planter" type="Sprite"]
 texture = ExtResource( 1 )
@@ -11,7 +13,7 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_horizontal_guides_": [ -36.3185 ],
-"_edit_vertical_guides_": [ 97.9814 ]
+"_edit_vertical_guides_": [ 97.9814, 38.1786 ]
 }
 plant = ExtResource( 4 )
 
@@ -27,6 +29,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Planter" type="Sprite" parent="Control"]
+material = ExtResource( 6 )
+position = Vector2( 23, 2 )
+texture = ExtResource( 5 )
+
 [node name="Control2" type="Control" parent="."]
 margin_left = -61.922
 margin_top = -36.0
@@ -37,6 +44,11 @@ mouse_default_cursor_shape = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Planter2" type="Sprite" parent="Control2"]
+material = ExtResource( 6 )
+position = Vector2( 23, 2 )
+texture = ExtResource( 5 )
 
 [node name="Control3" type="Control" parent="."]
 margin_left = 9.15817
@@ -49,6 +61,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Planter3" type="Sprite" parent="Control3"]
+material = ExtResource( 6 )
+position = Vector2( 23, 2 )
+texture = ExtResource( 5 )
+
 [node name="Control4" type="Control" parent="."]
 margin_left = 78.2361
 margin_top = -36.0
@@ -59,6 +76,11 @@ mouse_default_cursor_shape = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Planter4" type="Sprite" parent="Control4"]
+material = ExtResource( 6 )
+position = Vector2( 23, 2 )
+texture = ExtResource( 5 )
 
 [node name="Plant1" type="Node2D" parent="."]
 

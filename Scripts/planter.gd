@@ -35,26 +35,26 @@ func AddPlant(position, node):
 func _on_Control_gui_input(event):
 	if event.is_action_pressed("select"):
 		if !plant1:
-			AddPlant(Vector2(-110, -36.5), $Plant1)
+			AddPlant(Vector2(-101, -38.5), $Plant1)
 			plant1 = true
 
 
 func _on_Control2_gui_input(event):
 	if event.is_action_pressed("select"):
 		if !plant2:
-			AddPlant(Vector2(-41, -36.5), $Plant2)
+			AddPlant(Vector2(-32, -38.5), $Plant2)
 			plant2 = true
 
 
 func _on_Control3_gui_input(event):
 	if event.is_action_pressed("select"):
 		if !plant3:
-			AddPlant(Vector2(29, -36.5), $Plant3)
+			AddPlant(Vector2(38, -38.5), $Plant3)
 			plant3 = true
 
 
 func _on_Control4_gui_input(event):
 	if event.is_action_pressed("select"):
 		if !plant4:
-			AddPlant(Vector2(98, -36.5), $Plant4)
+			AddPlant(Vector2(107, -38.5), $Plant4)
 			plant4 = true

@@ -5,7 +5,7 @@ var game = "res://Scenes/game.tscn"
 var fishScene = preload("res://Scenes/fish.tscn")
 var options = preload("res://Scenes/optionsmenu.tscn")
 
-export var numFish = 50
+export var numFish = 200
 
 func _init():
 	for fish in numFish:
