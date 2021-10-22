@@ -33,12 +33,14 @@ func updateMoney():
 		$GUI/MoneyAddParticles.process_material.radial_accel = -1000
 	elif currentMoney - previousMoney < 0:
 		$GUI/MoneyAddParticles.process_material.radial_accel = 1000
+	if !$GUI/MoneyAddParticles.emitting:
+		$GUI/MoneyAddParticles.emitting = true
 	$GUI/MoneyAddTimer.start()
-	$GUI/MoneyAddParticles.emitting = true
 	previousMoney = ceil(currentMoney)
 
 func changeNutrientLevel(amount) -> void:
 	nutrientLevels += amount
+	nutrientLevels = clamp(nutrientLevels, minNutrients, maxNutrients)
 	
 
 func _on_Timer_timeout():
